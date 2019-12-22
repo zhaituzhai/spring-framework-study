@@ -55,23 +55,23 @@ final class PostProcessorRegistrationDelegate {
 		Set<String> processedBeans = new HashSet<>();
 
 		// 对BeanDefinitionRegistry 类型的处理
+		// 判断IOC 容器是不是BeanDefinitionRegistry的
 		if (beanFactory instanceof BeanDefinitionRegistry) {
+			//把IOC容器 强制转为BeanDefinitionRegistry类型的
 			BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
-			// 普通的
+			// 创建一个普通的PostProcessors的list的组件
 			List<BeanFactoryPostProcessor> regularPostProcessors = new ArrayList<>();
-			/*
-				BeanDefinitionRegistryPostProcessor
-			 */
+			// 创建一个BeanDefinitionRegistryPostProcessor类型的list
 			List<BeanDefinitionRegistryPostProcessor> registryProcessors = new ArrayList<>();
 
-			/*
-				硬编码注册的后处理器
-			 */
+			// 处理容器硬编码(new 出来的)带入的beanFacotryPostProcessors
 			for (BeanFactoryPostProcessor postProcessor : beanFactoryPostProcessors) {
+				//判断是不是BeanDefinitionRegistryPostProcessor
 				if (postProcessor instanceof BeanDefinitionRegistryPostProcessor) {
 					BeanDefinitionRegistryPostProcessor registryProcessor =
 							(BeanDefinitionRegistryPostProcessor) postProcessor;
 					// 对于 BeanDefinitionRegistryPostProcessor 类型，在BeanFactoryPostProcessor 的基础上还有自己定义的方法，需要先调用
+					// 调用BeanDefinitionRegistryPostProcessor的postProcessBeanDefinitionRegistry
 					registryProcessor.postProcessBeanDefinitionRegistry(registry);
 					registryProcessors.add(registryProcessor);
 				}

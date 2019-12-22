@@ -1,8 +1,7 @@
 package org.mytest.transaction;
 
-import com.tuling.config.MainConfig;
-import com.tuling.dao.AccountInfoDao;
-import com.tuling.service.PayService;
+import org.mytest.transaction.config.MainConfig;
+import org.mytest.transaction.service.PayService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**

@@ -41,6 +41,6 @@ public class BeanFactoryTest {
 	@Test
 	public void testAnnoTest(){
     	BeanFactory beanFactory = new AnnotationConfigApplicationContext(MyTestBean.class);
-    	beanFactory.getBean("test");
+    	 beanFactory.getBean("test");
 	}
 }

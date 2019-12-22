@@ -1,7 +1,7 @@
 package org.mytest.transaction.service;
 
-import com.tuling.dao.AccountInfoDao;
-import com.tuling.dao.ProductInfoDao;
+import org.mytest.transaction.dao.AccountInfoDao;
+import org.mytest.transaction.dao.ProductInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;

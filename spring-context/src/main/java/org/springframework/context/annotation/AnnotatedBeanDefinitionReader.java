@@ -82,9 +82,11 @@ public class AnnotatedBeanDefinitionReader {
 	public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry, Environment environment) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 		Assert.notNull(environment, "Environment must not be null");
+		// 把ApplicationContext对象赋值给AnnotatedBeanDefinitionReader
 		this.registry = registry;
+		// 用户处理条件表达式计算 @Conditionl
 		this.conditionEvaluator = new ConditionEvaluator(registry, environment, null);
-		// 注册内部各种组件
+		// 注册一些配置的后置处理器
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
 	}
 
@@ -249,8 +251,7 @@ public class AnnotatedBeanDefinitionReader {
 
 
 	/**
-	 * Get the Environment from the given registry if possible, otherwise return a new
-	 * StandardEnvironment.
+	 * 创建或者获取一个Environment对象
 	 */
 	private static Environment getOrCreateEnvironment(BeanDefinitionRegistry registry) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
